@@ -23,6 +23,7 @@ Things you may want to cover:
 
 * ...
 
+
 # chat-space DB設計
 ## usersテーブル
 |Column|Type|Option|
