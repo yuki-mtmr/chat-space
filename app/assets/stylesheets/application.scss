@@ -1,9 +1,13 @@
 @import "./reset";
 @import "font-awesome";
 @import "./variables";
-@import "_chat-side";
-@import "_chat-main";
+
+@import "chat-side";
+@import "chat-main";
 @import "modules/user";
+@import "modules/flash";
+@import "modules/group";
 * {
   box-sizing: border-box
 }
+a:visited { color:white; text-decoration:none }
