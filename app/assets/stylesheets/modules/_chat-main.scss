@@ -67,37 +67,38 @@
   height: 90px;
   padding: 20px 40px;
   background-color: #ddd;
-.new-message {
-  display: flex;
-.input-box {
-  position: relative;
-  width: 100%;
-  &__text {
-    height: 50px;
+  box-sizing: border-box;
+  .input-box {
     width: 100%;
-    color: $black;
-    padding: 0 40px 0 10px;
-    border-style: none;
+    float: left;
+    position: relative;
+    &__text {
+      height: 50px;
+      width: calc(100% - 115px);
+      color: $black;
+      padding: 0 40px 0 10px;
+      border-style: none;
+      float: left;
+    }
+    &__image {
+      font-size: 1.3rem;
+      position: absolute;
+      top: 10px;
+      right: 125px;
+      cursor: pointer;
+    }
+      .hidden {
+      display: none;
+    }
   }
-  &__image {
-    font-size: 1.3rem;
-    position: absolute;
-    top: 10px;
-    right: 10px;
+  .submit-btn {
+    width: 100px;
+    height: 50px;
+    padding: 0 30px;
+    margin-left: 15px;
+    float: right;
+    background-color: $blue;
+    color: $white;
     cursor: pointer;
-  &__file {
-    display: none;
   }
-  }
-}
-}
-.submit-btn {
-  width: 100px;
-  height: 50px;
-  padding: 0 30px;
-  margin-left: 15px;
-  background-color: $blue;
-  color: $white;
-  cursor: pointer;
-}
 }
