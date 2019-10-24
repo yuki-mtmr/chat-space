@@ -10,6 +10,11 @@
   border-bottom: solid 1px #eee;
   overflow: scroll;
   position: relative; 
+
+  a, a:visited {
+    color:$blue; text-decoration:none
+  }
+
   &__left-box {
     margin-top: 35px;
   &__current-group {
@@ -67,14 +72,13 @@
   height: 90px;
   padding: 20px 40px;
   background-color: #ddd;
-  box-sizing: border-box;
   .input-box {
     width: 100%;
     float: left;
     position: relative;
     &__text {
       height: 50px;
-      width: calc(100% - 115px);
+      width: calc(100% - 111px);
       color: $black;
       padding: 0 40px 0 10px;
       border-style: none;
@@ -83,8 +87,8 @@
     &__image {
       font-size: 1.3rem;
       position: absolute;
-      top: 10px;
-      right: 125px;
+      top: 11px;
+      right: 121px;
       cursor: pointer;
     }
       .hidden {
@@ -92,7 +96,6 @@
     }
   }
   .submit-btn {
-    width: 100px;
     height: 50px;
     padding: 0 30px;
     margin-left: 15px;

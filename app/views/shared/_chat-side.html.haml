@@ -1,7 +1,7 @@
 .chat-side
   .side-header
     .side-header__box
-      %h3.side-header__box__user-name 
+      %p.side-header__box__user-name 
         = current_user.name
       %ul.side-header__box__menu
         %li.side-header__box__menu__new-group
@@ -17,4 +17,4 @@
           .group__name
             = group.name
           .group__message
-            メッセージはまだありません。
+            = group.show_last_message

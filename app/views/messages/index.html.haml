@@ -6,19 +6,20 @@
     .main-header
       .main-header__left-box
         %h2.main-header__left-box__current-group
-          m
+          = @group.name
         %ul.main-header__left-box__member-list
           Member：
-          %li.main-header__left-box__member-list__member matt
-        .main-header__edit-btn Edit
+          %li.main-header__left-box__member-list__member 
+          - @group.users.each do |user|
+            = user.name
+        = link_to 'Edit',edit_group_path(@group), class: 'main-header__edit-btn'
     .messages
-      = render 'messages'
+      = render @messages
     .form
-      .new-message
-        .input-box
-          = form_for [@group, @message] do |f|
-            = f.text_field :content, class: 'input-box__text', placeholder: 'type a message'
-            = f.label :image, class: 'input-box__image' do
-              = fa_icon 'picture-o', class: 'icon'
-              = f.file_field :image, class: 'hidden'
-            = f.submit 'Send', class: 'submit-btn'
+      .input-box
+        = form_for [@group, @message] do |f|
+          = f.text_field :content, class: 'input-box__text', placeholder: 'type a message'
+          = f.label :image, class: 'input-box__image' do
+            = fa_icon 'picture-o', class: 'icon'
+            = f.file_field :image, class: 'hidden'
+          = f.submit 'Send', class: 'submit-btn'
