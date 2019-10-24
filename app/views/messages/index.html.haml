@@ -1,46 +1,25 @@
 .wrapper
-  .chat-side
-    .side-header
-      .side-header__box
-        %h3.side-header__box__user-name 
-          = current_user.name
-        %ul.side-header__box__menu
-          %li.side-header__box__menu__new-group
-            = link_to do
-              = fa_icon 'pencil-square-o', class: 'icon'
-          %li.side-header__box__menu__edit-user
-            = link_to edit_user_path(current_user) do
-              = fa_icon 'cog', class: 'icon'
-    .groups
-      .group
-        %p.group__group-name m
-        %p.group__latest-message テスト
+
+  = render 'shared/chat-side'
+
   .chat-main
     .main-header
       .main-header__left-box
         %h2.main-header__left-box__current-group
-          m
+          = @group.name
         %ul.main-header__left-box__member-list
           Member：
-          %li.main-header__left-box__member-list__member matt
-        .main-header__edit-btn Edit
+          %li.main-header__left-box__member-list__member 
+          - @group.users.each do |user|
+            = user.name
+        = link_to 'Edit',edit_group_path(@group), class: 'main-header__edit-btn'
     .messages
-      .message
-        .message__upper-info
-          %p.message__upper-info__talker matt
-          %p.message__upper-info__date 2029/10/21(Sun) 16:44:49
-        %p.message__text テスト
-      .message
-        .message__upper-info
-          %p.message__upper-info__talker matt
-          %p.message__upper-info__date 2029/10/21(Sun) 17:21:12
-        %p.message__text gfhjtyjwtyj
+      = render @messages
     .form
-      %form
-        .new-message
-          .input-box
-            %input.input-box__text{placeholder: "type a message", type: "text"}/
-            %label.input-box__image
-              %i.fa.fa-image
-              %input#message_image.input-box__image__file{name: "message[image]", type: "file"}/
-          %input.submit-btn{name: "commit", type: "submit", value: "Send"}/
+      .input-box
+        = form_for [@group, @message] do |f|
+          = f.text_field :content, class: 'input-box__text', placeholder: 'type a message'
+          = f.label :image, class: 'input-box__image' do
+            = fa_icon 'picture-o', class: 'icon'
+            = f.file_field :image, class: 'hidden'
+          = f.submit 'Send', class: 'submit-btn'

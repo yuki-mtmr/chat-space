@@ -1,9 +1,15 @@
 @import "./reset";
 @import "font-awesome";
 @import "./variables";
-@import "_chat-side";
-@import "_chat-main";
+
+@import "modules/chat-side";
+@import "modules/chat-main";
 @import "modules/user";
+@import "modules/flash";
+@import "modules/group";
 * {
   box-sizing: border-box
+}
+* {
+  text-decoration: none;
 }
