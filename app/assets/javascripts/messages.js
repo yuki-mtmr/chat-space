@@ -1,4 +1,4 @@
-$(function(){ 
+$(document).on('turbolinks:load', function(){ 
   function buildPost(message){
     var content = message.content ? `${ message.content }` : "";
     var img = message.image ? `<img src= ${ message.image }>` : "";
@@ -42,7 +42,7 @@ $(function(){
     .done(function(message){
       var html = buildPost(message);
       $('.messages').append(html)
-      $('#message_content').val('')
+      $("#new_message")[0].reset();
       scrollBottom();
 
     })
