@@ -72,6 +72,9 @@
   height: 90px;
   padding: 20px 40px;
   background-color: #ddd;
+  .new_message {
+    display: flex;
+  }
   .input-box {
     width: 100%;
     float: left;
@@ -88,7 +91,7 @@
       font-size: 1.3rem;
       position: absolute;
       top: 11px;
-      right: 121px;
+      right: 125px;
       cursor: pointer;
     }
     .hidden {
