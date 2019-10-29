@@ -72,6 +72,9 @@
   height: 90px;
   padding: 20px 40px;
   background-color: #ddd;
+  .new_message {
+    display: flex;
+  }
   .input-box {
     width: 100%;
     float: left;
@@ -88,10 +91,10 @@
       font-size: 1.3rem;
       position: absolute;
       top: 11px;
-      right: 121px;
+      right: 125px;
       cursor: pointer;
     }
-      .hidden {
+    .hidden {
       display: none;
     }
   }
@@ -99,7 +102,6 @@
     height: 50px;
     padding: 0 30px;
     margin-left: 15px;
-    float: right;
     background-color: $blue;
     color: $white;
     cursor: pointer;
