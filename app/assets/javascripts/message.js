@@ -49,34 +49,34 @@ $(document).on('turbolinks:load', function(){
     });
   });
 
-  //自動更新機能
+  自動更新機能
   
-  // var reloadMessages = function() {
-  //   if (window.location.href.match(/\/groups\/\d+\/messages/)) {
-  //     //カスタムデータ属性を利用し、ブラウザに表示されている最新メッセージのidを取得
-  //     var last_message_id = $('.message:last').data("message-id");
+  var reloadMessages = function() {
+    if (window.location.href.match(/\/groups\/\d+\/messages/)) {
+      //カスタムデータ属性を利用し、ブラウザに表示されている最新メッセージのidを取得
+      var last_message_id = $('.message:last').data("message-id");
 
-  //     $.ajax({
-  //       //ルーティングで設定した通り/groups/id番号/api/messagesとなるよう文字列を書く
-  //       url: "api/messages",
-  //       //ルーティングで設定した通りhttpメソッドをgetに指定
-  //       type: 'get',
-  //       dataType: 'json',
-  //       //dataオプションでリクエストに値を含める
-  //       data: {id: last_message_id}
-  //     })
-  //     .done(function(messages) {
-  //       var insertHTML = '';
-  //       messages.forEach(function (message) {
-  //         insertHTML = buildHTML(message);
-  //         $('.messages').append(insertHTML);
-  //         $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast');
-  //       })
-  //     })
-  //     .fail(function() {
-  //       alert('自動更新に失敗しました');
-  //     });
-  //   };
-  // };
-  // setInterval(reloadMessages, 5000);
+      $.ajax({
+        //ルーティングで設定した通り/groups/id番号/api/messagesとなるよう文字列を書く
+        url: "api/messages",
+        //ルーティングで設定した通りhttpメソッドをgetに指定
+        type: 'get',
+        dataType: 'json',
+        //dataオプションでリクエストに値を含める
+        data: {id: last_message_id}
+      })
+      .done(function(messages) {
+        var insertHTML = '';
+        messages.forEach(function (message) {
+          insertHTML = buildHTML(message);
+          $('.messages').append(insertHTML);
+          $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast');
+        })
+      })
+      .fail(function() {
+        alert('自動更新に失敗しました');
+      });
+    };
+  };
+  setInterval(reloadMessages, 5000);
 });
