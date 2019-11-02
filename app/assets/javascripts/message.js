@@ -1,7 +1,7 @@
 $(document).on('turbolinks:load', function(){
   function buildHTML(message) {
     var content = message.content ? `${ message.content }` : "";
-    var img  = message.image ? `<img class="message__text__image" src="${ message.image }">` :"";
+    var img  = message.image ? `<img src=${ message.image }>` :"";
 
     var html = `<div class="message" data-message-id="${message.id}">
                   <div class="message__upper-info">
@@ -19,8 +19,8 @@ $(document).on('turbolinks:load', function(){
                         ${img}
                       </div>
                    </div>`
- 
-  return html;
+                   
+    return html;
   }
 
   //非同期通信
@@ -38,7 +38,7 @@ $(document).on('turbolinks:load', function(){
         processData: false,
         contentType: false
       })
-      .done(function(message){
+      .done(function(message){ 
         var html = buildHTML(message);
         $('.messages').append(html)
         $("#new_message")[0].reset();
@@ -56,7 +56,7 @@ $(document).on('turbolinks:load', function(){
   var reloadMessages = function() {
     if (window.location.href.match(/\/groups\/\d+\/messages/)) {
       //カスタムデータ属性を利用し、ブラウザに表示されている最新メッセージのidを取得
-      var last_message_id = $('.messages .message:last').data("message-id");
+      var last_message_id = $('.message:last').data("message-id");
 
       $.ajax({
         //ルーティングで設定した通り/groups/id番号/api/messagesとなるよう文字列を書く
@@ -69,11 +69,11 @@ $(document).on('turbolinks:load', function(){
       })
       .done(function(messages) {
         var insertHTML = '';
-          messages.forEach(function (message) {
-            insertHTML = buildHTML(message);
-            $('.messages').append(insertHTML);
-            $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast');
-          })
+        messages.forEach(function (message) {
+          insertHTML = buildHTML(message);
+          $('.messages').append(insertHTML);
+        })
+        $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast');
       })
       .fail(function() {
         alert('自動更新に失敗しました');
