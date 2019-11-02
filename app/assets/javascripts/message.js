@@ -49,7 +49,7 @@ $(document).on('turbolinks:load', function(){
     });
   });
 
-  自動更新機能
+  //自動更新機能
   
   var reloadMessages = function() {
     if (window.location.href.match(/\/groups\/\d+\/messages/)) {
