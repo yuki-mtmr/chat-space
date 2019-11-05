@@ -18,20 +18,18 @@ $(document).on('turbolinks:load', function(){
     $("#user-search-result").append(html);
   }
 
-  var search_list_add = $("#chat-group-users");
-
-  function addDeleteUser(name, id) {
-    let html = `
-    <div class="chat-group-user clearfix" id="${id}">
-      <p class="chat-group-user__name">${name}</p>
-      <div class="user-search-remove chat-group-user__btn chat-group-user__btn--remove" data-user-id="${id}" data-user-name="${name}">削除</div>
-    </div>`;
-    $(".js-add-user").append(html);
+  function addUserToGroup(userId, userName){
+    var html =
+      `<div class='chat-group-user clearfix js-chat-member' id='chat-group-user-${ userId }'>
+        <input name='group[user_ids][]' type='hidden' value='${ userId }'>
+        <p class='chat-group-user__name'>
+          ${ userName }
+        </p>
+        <a class='user-search-remove chat-group-user__btn chat-group-user__btn--remove js-remove-btn'>削除</a>
+      </div>`
+    $('#chat-group-users').append(html);
   }
-  function addMember(userId) {
-    let html = `<input value="${userId}" name="group[user_ids][]" type="hidden" id="group_user_ids_${userId}" />`;
-    $(`#${userId}`).append(html);
-  }
+  
   $("#user-search-field").on("keyup", function() {
     let input = $("#user-search-field").val();
     $.ajax({
@@ -57,16 +55,15 @@ $(document).on('turbolinks:load', function(){
         alert("通信エラーです。ユーザーが表示できません。");
       });
   });
-  $(document).on("click", ".user-search-add", function() {　//発火ボタン入れ替え
+  $('#user-search-result').on("click", ".chat-group-user__btn--add", function() { //発火ボタン入れ替え
     const userName = $(this).attr("data-user-name");
     const userId = $(this).attr("data-user-id");
     $(this)
       .parent()
       .remove();
-    addDeleteUser(userName, userId);
-    addMember(userId);
+      addUserToGroup(userId, userName);
   });
-  $(document).on("click", ".user-search-remove", function() { //発火ボタン入れ替え
+  $('#chat-group-users').on("click", ".chat-group-user__btn--remove", function() { //発火ボタン入れ替え
     $(this)
       .parent()
       .remove();
